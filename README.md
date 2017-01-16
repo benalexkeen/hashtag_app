@@ -20,4 +20,5 @@ To serve the application:
 ### Testing
 
 To run the unit tests:
-  * `nosetest -v tests.py`
+  * `export NLTK_DATA=./nltk_data/` 
+  * `nosetests -v tests.py`
