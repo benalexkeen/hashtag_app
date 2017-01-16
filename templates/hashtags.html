@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Hashtags from Documents</title>
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h3 class="text-muted">Hashtags</h3>
+    </div>
+
+        <table class='table table-striped table-bordered'>
+          <thead class="thead-default">
+            <tr>
+              <td>
+                <strong>Word (#)</strong>
+              </td>
+              <td>
+                <strong>Documents</strong>
+              </td>
+              <td>
+                <strong>Sentences containing the word</strong>
+              </td>
+            </tr></b>
+          </thead>
+          {% for word in data %}
+            <tr>
+              <td>
+                {{ word[0].title() | safe }}
+              </td>
+              <td>
+                {% for file in word[1] %}
+                  {{ file | safe }}, 
+                {% endfor %}
+              </td>
+              <td>
+                {% for sentence in word[2] %}
+                  <script type="text/javascript">
+                    var w = ['{{ word[0].title()}}', '{{ word[0]}}'];
+                    var r = new RegExp('(' + w.join('|') + ')', 'ig');
+                    var s = '{{sentence}}';
+                    var s = s.replace(r, '<strong>$1</strong>');
+                    document.write(s);
+                  </script>
+                  </br></br>
+                {% endfor %}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+
+    <footer class="footer">
+    </footer>
+
+  </div>
+</body>
+
+</html>
